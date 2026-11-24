@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farhan Munfaridz — Information Systems Portfolio</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, and JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            slate: {
+              950: '#020617',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Subtle grid background texture for dark mode depth */
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* Custom scrollbar matching Slate-950 & Cyan theme */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06b6d4;
+    }
+
+    /* Clean White A4 Single-Page ATS Print Styling for CV Modal */
+    @page {
+      size: A4 portrait;
+      margin: 10mm 12mm;
+    }
+
+    @media print {
+      html, body {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /* Completely remove all background website elements from print layout flow */
+      body > *:not(#cv-modal) {
+        display: none !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      #cv-modal {
+        position: static !important;
+        inset: auto !important;
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      #cv-modal-card {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        overflow: visible !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      #cv-printable-area {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 9.5pt !important;
+        line-height: 1.35 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      #cv-printable-area .cv-section {
+        margin-top: 8px !important;
+        margin-bottom: 8px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      #cv-printable-area .cv-header {
+        padding-bottom: 8px !important;
+        margin-bottom: 8px !important;
+      }
+
+      #cv-printable-area ul li {
+        margin-bottom: 4px !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden bg-grid-pattern">
+
+  <!-- Ambient Glow Orbs -->
+  <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+    <div class="absolute -top-36 -left-24 w-96 h-96 rounded-full bg-blue-600/15 blur-3xl"></div>
+    <div class="absolute top-1/4 -right-28 w-[28rem] h-[28rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <div class="absolute bottom-10 left-1/3 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl"></div>
+  </div>
+
+  <!-- =========================================================
+       1. STICKY NAVBAR
+  ========================================================== -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-xl">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-2.5 group focus:outline-none">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-slate-950 font-display font-extrabold text-sm shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          FM
+        </div>
+        <span class="font-display font-extrabold text-xl tracking-tight text-white">
+          Farhan<span class="text-cyan-400">.M</span>
+        </span>
+      </a>
+
+      <!-- Desktop Menu Links -->
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#home" data-i18n="nav_home" class="hover:text-cyan-400 transition-colors py-2">Beranda</a>
+        <a href="#about" data-i18n="nav_about" class="hover:text-cyan-400 transition-colors py-2">Tentang</a>
+        <a href="#skills" data-i18n="nav_skills" class="hover:text-cyan-400 transition-colors py-2">Keahlian</a>
+        <a href="#projects" data-i18n="nav_projects" class="hover:text-cyan-400 transition-colors py-2">Proyek</a>
+        <a href="#contact" data-i18n="nav_contact" class="hover:text-cyan-400 transition-colors py-2">Kontak</a>
+      </div>
+
+      <!-- Language Switcher & Mobile Menu Toggle -->
+      <div class="flex items-center gap-2.5">
+        <!-- Interactive ID / EN Toggle Switch -->
+        <button
+          id="lang-toggle-btn"
+          type="button"
+          aria-label="Toggle Language ID / EN"
+          class="inline-flex items-center gap-1 p-1 rounded-xl bg-slate-900/90 border border-slate-700/80 hover:border-cyan-400/60 text-xs font-mono font-semibold transition-all shadow-inner"
+        >
+          <span id="lang-pill-id" class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 font-bold transition-all">ID</span>
+          <span id="lang-pill-en" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-slate-200 transition-all">EN</span>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          aria-label="Open Navigation Menu"
+          class="md:hidden p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 transition-colors"
+        >
+          <i id="mobile-menu-icon" class="fa-solid fa-bars text-base"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu-panel" class="hidden md:hidden border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-1.5">
+      <a href="#home" data-i18n="nav_home" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">Beranda</a>
+      <a href="#about" data-i18n="nav_about" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">Tentang</a>
+      <a href="#skills" data-i18n="nav_skills" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">Keahlian</a>
+      <a href="#projects" data-i18n="nav_projects" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">Proyek</a>
+      <a href="#contact" data-i18n="nav_contact" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900 hover:text-cyan-400 transition-colors">Kontak</a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- =========================================================
+         2. HERO SECTION
+    ========================================================== -->
+    <section id="home" class="py-14 sm:py-20 lg:py-28">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+        
+        <!-- Left Column: Profile Intro & CTA (7 Cols) -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
+          <!-- Open-to-Work / Internship Status Badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 shadow-md">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+            </span>
+            <span data-i18n="hero_status" class="text-xs sm:text-sm font-medium text-slate-200">
+              Tersedia untuk Magang &amp; Kolaborasi Proyek
+            </span>
+          </div>
+
+          <!-- Name, Headline & Academic Affiliation -->
+          <div class="space-y-2.5">
+            <p data-i18n="hero_greeting" class="font-mono text-sm sm:text-base text-cyan-400">
+              Halo, saya
+            </p>
+            <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent pb-1">
+              Farhan Munfaridz
+            </h1>
+            <h2 class="font-display font-semibold text-lg sm:text-2xl bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Information Systems Student | Web &amp; Data Enthusiast
+            </h2>
+            <p data-i18n="hero_affiliation" class="text-xs sm:text-sm font-mono text-slate-400 flex items-center justify-center lg:justify-start gap-2 pt-0.5">
+              <i class="fa-solid fa-university text-cyan-400"></i>
+              <span>Mahasiswa Semester 7 Sistem Informasi, Universitas Pamulang (Pamulang, Tangerang Selatan)</span>
+            </p>
+          </div>
+
+          <!-- Short Bio -->
+          <p data-i18n="hero_bio" class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Mahasiswa Semester 7 Sistem Informasi di Universitas Pamulang (Pamulang, Tangerang Selatan) yang fokus pada pengembangan aplikasi web, analisis data, sistem informasi bisnis, dan implementasi SDLC untuk memecahkan masalah nyata di lapangan.
+          </p>
+
+          <!-- Primary & Secondary Action Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-2">
+            <!-- View Projects -->
+            <a
+              href="#projects"
+              class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/25 hover:brightness-110 hover:-translate-y-0.5 transition-all"
+            >
+              <span data-i18n="btn_view_projects">Lihat Proyek</span>
+              <i class="fa-solid fa-arrow-down text-xs"></i>
+            </a>
+
+            <!-- View & Save ATS CV Modal -->
+            <button
+              id="open-cv-btn"
+              type="button"
+              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-900/90 border border-slate-700 hover:border-cyan-400/60 text-slate-200 hover:text-white font-semibold text-sm hover:-translate-y-0.5 transition-all"
+            >
+              <i class="fa-solid fa-file-pdf text-cyan-400"></i>
+              <span data-i18n="btn_download_cv">Lihat &amp; Unduh CV</span>
+            </button>
+          </div>
+
+          <!-- Quick Social & Contact Pills (GitHub, LinkedIn, WhatsApp, Gmail) -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1">
+            <a
+              href="https://github.com/Varxyy51"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-400/60 text-xs font-mono text-slate-300 hover:text-cyan-300 transition-all"
+            >
+              <i class="fa-brands fa-github text-sm text-cyan-400"></i>
+              <span>github.com/Varxyy51</span>
+            </a>
+
+            <!-- GANTI LINK URL LINKEDIN JIKA SLUG PROFIL BERBEDA -->
+            <a
+              href="https://www.linkedin.com/in/farhan-munfaridz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-sky-400/60 text-xs font-mono text-slate-300 hover:text-sky-300 transition-all"
+            >
+              <i class="fa-brands fa-linkedin text-sm text-sky-400"></i>
+              <span>Farhan Munfaridz</span>
+            </a>
+
+            <a
+              href="https://wa.me/6287876510930"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-400/60 text-xs font-mono text-slate-300 hover:text-emerald-300 transition-all"
+            >
+              <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+              <span>+62 878-7651-0930</span>
+            </a>
+
+            <a
+              href="mailto:farhanmunfaridz@gmail.com"
+              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-blue-400/60 text-xs font-mono text-slate-300 hover:text-blue-300 transition-all"
+            >
+              <i class="fa-solid fa-envelope text-sm text-blue-400"></i>
+              <span>farhanmunfaridz@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Dual-Photo Interactive Profile Frame (5 Cols) -->
+        <div class="lg:col-span-5 flex flex-col items-center order-1 lg:order-2">
+          <div class="relative group">
+            <!-- Outer Animated Ambient Glow -->
+            <div class="absolute -inset-2.5 rounded-full bg-gradient-to-tr from-blue-600 via-cyan-400 to-emerald-400 opacity-35 blur-xl group-hover:opacity-60 transition-opacity duration-500"></div>
+
+            <!-- Circular Gradient Border Ring -->
+            <div class="relative p-1.5 rounded-full bg-gradient-to-tr from-blue-500 via-cyan-400 to-blue-600 shadow-2xl shadow-cyan-500/20">
+              <div class="w-60 h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden bg-slate-900 border-4 border-slate-950 relative flex items-center justify-center">
+                <!--
+                  PETUNJUK FOTO HERO SECTION:
+                  Letakkan file "foto-farhan1.jpeg" (foto almamater formal) dan "foto-farhan2.jpeg" (foto kasual)
+                  di folder yang sama dengan index.html. Tombol Formal / Casual di bawah bingkai akan mengganti foto secara dinamis.
+                -->
+                <img
+                  id="hero-profile-img"
+                  src="foto-farhan1.jpeg"
+                  alt="Farhan Munfaridz"
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-500"
+                  onerror="this.classList.add('hidden'); document.getElementById('profile-avatar-fallback').classList.remove('hidden');"
+                />
+
+                <!-- Clean Vector Fallback Avatar (shown automatically if local image files are not yet placed) -->
+                <div id="profile-avatar-fallback" class="hidden w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-slate-800 to-slate-950 text-center p-6">
+                  <svg class="w-28 h-28 text-cyan-400/80 mb-2" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="60" r="56" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6" opacity="0.4"/>
+                    <circle cx="60" cy="44" r="18" fill="url(#avatarGrad)"/>
+                    <path d="M28 96C28 79.4315 41.4315 66 58 66H62C78.5685 66 92 79.4315 92 96" fill="url(#avatarGrad)"/>
+                    <defs>
+                      <linearGradient id="avatarGrad" x1="28" y1="26" x2="92" y2="96" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#3B82F6"/>
+                        <stop offset="1" stop-color="#22D3EE"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <span id="hero-fallback-filename" class="font-mono text-xs text-cyan-300">foto-farhan1.jpeg</span>
+                  <span class="text-[11px] text-slate-400 mt-1">Farhan Munfaridz</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Campus / Semester Badge -->
+            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-1.5 rounded-2xl bg-slate-900/95 border border-slate-700/90 backdrop-blur-md shadow-xl flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-cyan-400 text-xs"></i>
+              <span class="font-mono text-xs font-medium text-slate-200">UNPAM • Semester 7</span>
+            </div>
+          </div>
+
+          <!-- Interactive Photo Switcher Pill ("Formal" / "Kasual") -->
+          <div class="mt-7 inline-flex items-center gap-1 p-1 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-lg">
+            <button
+              id="photo-btn-formal"
+              type="button"
+              class="px-4 py-1.5 rounded-xl text-xs font-mono font-bold bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 shadow transition-all"
+            >
+              <i class="fa-solid fa-user-tie mr-1.5"></i><span data-i18n="photo_formal">Formal</span>
+            </button>
+            <button
+              id="photo-btn-casual"
+              type="button"
+              class="px-4 py-1.5 rounded-xl text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all"
+            >
+              <i class="fa-solid fa-camera-retro mr-1.5"></i><span data-i18n="photo_casual">Kasual</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. ABOUT & HIGHLIGHTS SECTION (2-COLUMN WITH CASUAL PORTRAIT)
+    ========================================================== -->
+    <section id="about" class="py-16 sm:py-20 border-t border-slate-800/70">
+      <div class="space-y-10">
+        <!-- Section Heading -->
+        <div class="max-w-2xl space-y-2">
+          <p data-i18n="about_kicker" class="font-mono text-xs sm:text-sm uppercase tracking-wider text-cyan-400">
+            01. Tentang Saya
+          </p>
+          <h2 data-i18n="about_title" class="font-display font-bold text-2xl sm:text-4xl text-white">
+            Menjembatani Proses Bisnis &amp; Solusi Teknologi
+          </h2>
+        </div>
+
+        <!-- 2-Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          <!-- Left Column: Glassmorphic Portrait Card (4:5 Aspect Ratio with foto-farhan2.jpeg) -->
+          <div class="lg:col-span-5">
+            <div class="relative group max-w-sm mx-auto">
+              <!-- Subtle Cyan/Blue Border Glow -->
+              <div class="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-blue-500/40 via-cyan-400/30 to-emerald-400/30 blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
+
+              <div class="relative rounded-3xl bg-slate-900/80 backdrop-blur-md border border-slate-800/90 p-3 shadow-2xl">
+                <div class="aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-950 relative flex items-center justify-center">
+                  <!--
+                    PETUNJUK FOTO ABOUT ME:
+                    Menampilkan "foto-farhan2.jpeg" (foto kasual) secara default.
+                    Pastikan file foto-farhan2.jpeg berada di folder yang sama dengan index.html.
+                  -->
+                  <img
+                    src="foto-farhan2.jpeg"
+                    alt="Farhan Munfaridz Casual Portrait"
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    onerror="this.classList.add('hidden'); document.getElementById('about-portrait-fallback').classList.remove('hidden');"
+                  />
+
+                  <!-- Graceful Fallback if foto-farhan2.jpeg is not yet placed locally -->
+                  <div id="about-portrait-fallback" class="hidden w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-6 text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-3">
+                      <i class="fa-solid fa-user-astronaut text-3xl"></i>
+                    </div>
+                    <p class="font-mono text-xs text-cyan-300">foto-farhan2.jpeg</p>
+                    <p class="text-xs text-slate-400 mt-1">Farhan Munfaridz • Semester 7</p>
+                  </div>
+
+                  <!-- Bottom Gradient Overlay & Floating Badge -->
+                  <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 backdrop-blur-md shadow-lg">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      <span data-i18n="about_photo_badge" class="font-mono text-[11px] sm:text-xs font-medium text-slate-100">
+                        Semester 7 • Sistem Informasi UNPAM
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Bilingual Story + 4 Mini Highlight Cards -->
+          <div class="lg:col-span-7 rounded-3xl bg-slate-900/70 backdrop-blur-md border border-slate-800/80 p-6 sm:p-8 shadow-xl space-y-6">
+            <div class="space-y-4 text-slate-300 leading-relaxed text-sm sm:text-base">
+              <p data-i18n="about_p1">
+                Saya adalah mahasiswa <strong class="text-white font-semibold">Semester 7 Program Studi Sistem Informasi di Universitas Pamulang</strong> (Pamulang, Tangerang Selatan). Ketertarikan utama saya berada di persimpangan antara pengembangan teknis (Laravel, Python, SQL) dengan analisis sistem, ERP, dan tata kelola TI (Audit &amp; Monitoring).
+              </p>
+              <p data-i18n="about_p2">
+                Dengan pola pikir <strong class="text-cyan-300 font-medium">System Analyst &amp; Developer</strong>, saya menjembatani kebutuhan alur kerja bisnis melalui pemodelan <strong class="text-cyan-300 font-medium">SDLC (System Development Life Cycle)</strong>, perancangan basis data relasional, hingga rekayasa perangkat lunak modern yang terukur dampaknya.
+              </p>
+            </div>
+
+            <!-- 4 Mini Highlight Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+              <!-- 1. Affiliation -->
+              <div class="p-4 rounded-2xl bg-slate-950/85 border border-slate-800/90 flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                  <i class="fa-solid fa-university text-sm"></i>
+                </div>
+                <div class="min-w-0">
+                  <p data-i18n="meta_affil_label" class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Afiliasi</p>
+                  <p data-i18n="meta_affil_val" class="font-display font-bold text-xs sm:text-sm text-white mt-0.5">Universitas Pamulang - Semester 7</p>
+                </div>
+              </div>
+
+              <!-- 2. Location -->
+              <div class="p-4 rounded-2xl bg-slate-950/85 border border-slate-800/90 flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                  <i class="fa-solid fa-location-dot text-sm"></i>
+                </div>
+                <div class="min-w-0">
+                  <p data-i18n="meta_loc_label" class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Lokasi</p>
+                  <p class="font-display font-bold text-xs sm:text-sm text-white mt-0.5">Pamulang, Tangerang Selatan</p>
+                </div>
+              </div>
+
+              <!-- 3. Email -->
+              <a
+                href="mailto:farhanmunfaridz@gmail.com"
+                class="p-4 rounded-2xl bg-slate-950/85 border border-slate-800/90 hover:border-blue-500/40 flex items-start gap-3 transition-colors group"
+              >
+                <div class="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                  <i class="fa-solid fa-envelope text-sm"></i>
+                </div>
+                <div class="min-w-0">
+                  <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Email</p>
+                  <p class="font-mono font-semibold text-xs text-slate-200 group-hover:text-cyan-300 truncate mt-0.5">farhanmunfaridz@gmail.com</p>
+                </div>
+              </a>
+
+              <!-- 4. WhatsApp -->
+              <a
+                href="https://wa.me/6287876510930"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-4 rounded-2xl bg-slate-950/85 border border-slate-800/90 hover:border-emerald-500/40 flex items-start gap-3 transition-colors group"
+              >
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm"></i>
+                </div>
+                <div class="min-w-0">
+                  <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400">WhatsApp</p>
+                  <p class="font-mono font-semibold text-xs text-slate-200 group-hover:text-emerald-300 mt-0.5">+62 878-7651-0930</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. TECH STACK & SKILLS SECTION
+    ========================================================== -->
+    <section id="skills" class="py-16 sm:py-20 border-t border-slate-800/70">
+      <div class="space-y-10">
+        <!-- Section Heading -->
+        <div class="max-w-2xl space-y-2">
+          <p data-i18n="skills_kicker" class="font-mono text-xs sm:text-sm uppercase tracking-wider text-cyan-400">
+            02. Tech Stack &amp; Keahlian
+          </p>
+          <h2 data-i18n="skills_title" class="font-display font-bold text-2xl sm:text-4xl text-white">
+            Perangkat &amp; Kompetensi Teknis
+          </h2>
+          <p data-i18n="skills_subtitle" class="text-slate-400 text-sm sm:text-base">
+            Kombinasi teknologi pengembangan aplikasi, pengolahan data bisnis, serta analisis sistem &amp; keamanan jaringan.
+          </p>
+        </div>
+
+        <!-- 3 Skill Category Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Category 1: Web & Mobile Development -->
+          <div class="rounded-3xl bg-slate-900/70 backdrop-blur-xl border border-slate-800 hover:border-blue-500/50 p-6 sm:p-7 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-5 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-code text-lg"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">
+                Web &amp; Mobile Development
+              </h3>
+              <p data-i18n="skill_cat1_desc" class="text-xs sm:text-sm text-slate-400 mb-6 leading-relaxed">
+                Pengembangan antarmuka responsif dan sistem web full-stack maupun aplikasi lintas platform.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-300">PHP (Laravel)</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200">HTML/CSS</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200">JavaScript</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-blue-300">Flutter</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200">WordPress</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Data & Backend -->
+          <div class="rounded-3xl bg-slate-900/70 backdrop-blur-xl border border-slate-800 hover:border-cyan-500/50 p-6 sm:p-7 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-database text-lg"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">
+                Data &amp; Backend
+              </h3>
+              <p data-i18n="skill_cat2_desc" class="text-xs sm:text-sm text-slate-400 mb-6 leading-relaxed">
+                Pengelolaan basis data relasional, visualisasi analitik data operasional, dan integrasi ERP bisnis.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-300">Python (Streamlit)</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200">SQLite</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200">MySQL</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-300">Odoo 19 ERP</span>
+            </div>
+          </div>
+
+          <!-- Category 3: Systems, Network & Security -->
+          <div class="rounded-3xl bg-slate-900/70 backdrop-blur-xl border border-slate-800 hover:border-emerald-500/50 p-6 sm:p-7 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-blue-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-network-wired text-lg"></i>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-2">
+                Systems, Network &amp; Security
+              </h3>
+              <p data-i18n="skill_cat3_desc" class="text-xs sm:text-sm text-slate-400 mb-6 leading-relaxed">
+                Perancangan arsitektur sistem, pemantauan log keamanan, tata kelola audit TI, dan optimasi teknis web.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-300">SDLC &amp; System Analysis</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200">Cisco Packet Tracer</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-300">Splunk (Log Monitoring)</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200">AuditBoard</span>
+              <span class="px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-slate-200">Technical SEO</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. FEATURED PROJECTS SECTION
+    ========================================================== -->
+    <section id="projects" class="py-16 sm:py-20 border-t border-slate-800/70">
+      <div class="space-y-10">
+        <!-- Header & Interactive Category Filter Tabs -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div class="space-y-2">
+            <p data-i18n="projects_kicker" class="font-mono text-xs sm:text-sm uppercase tracking-wider text-cyan-400">
+              03. Proyek Unggulan
+            </p>
+            <h2 data-i18n="projects_title" class="font-display font-bold text-2xl sm:text-4xl text-white">
+              Studi Kasus &amp; Karya Terpilih
+            </h2>
+          </div>
+
+          <!-- Filter Buttons -->
+          <div id="project-filters" class="flex flex-wrap gap-2">
+            <button
+              type="button"
+              data-filter="all"
+              class="filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 shadow-md shadow-cyan-500/20"
+            >
+              All
+            </button>
+            <button
+              type="button"
+              data-filter="Web & App"
+              class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900/90 border border-slate-800 text-slate-300 hover:border-cyan-400/50 hover:text-white"
+            >
+              Web &amp; App
+            </button>
+            <button
+              type="button"
+              data-filter="Data & ERP"
+              class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900/90 border border-slate-800 text-slate-300 hover:border-cyan-400/50 hover:text-white"
+            >
+              Data &amp; ERP
+            </button>
+            <button
+              type="button"
+              data-filter="Game/Creative"
+              class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900/90 border border-slate-800 text-slate-300 hover:border-cyan-400/50 hover:text-white"
+            >
+              Game/Creative
+            </button>
+          </div>
+        </div>
+
+        <!-- Projects Grid (Populated via JavaScript for seamless filter + bilingual sync) -->
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <!-- Cards rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. CONTACT SECTION (LINKEDIN, WHATSAPP, EMAIL, GITHUB + DUAL-ACTION FORM)
+    ========================================================== -->
+    <section id="contact" class="py-16 sm:py-24 border-t border-slate-800/70">
+      <div class="space-y-10">
+        <!-- Section Heading -->
+        <div class="max-w-2xl space-y-2">
+          <p data-i18n="contact_kicker" class="font-mono text-xs sm:text-sm uppercase tracking-wider text-cyan-400">
+            04. Hubungi Saya
+          </p>
+          <h2 data-i18n="contact_title" class="font-display font-bold text-2xl sm:text-4xl text-white">
+            Mari Berkolaborasi &amp; Diskusi
+          </h2>
+          <p data-i18n="contact_subtitle" class="text-slate-400 text-sm sm:text-base">
+            Terbuka untuk kesempatan magang, kolaborasi pengembangan sistem informasi, proyek aplikasi web, maupun diskusi seputar analisis data.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left Side: 4 Direct Contact Cards with One-Click Open + Copy (5 Cols) -->
+          <div class="lg:col-span-5 space-y-3.5">
+
+            <!-- 1. LinkedIn Card -->
+            <!-- GANTI LINK URL LINKEDIN JIKA SLUG PROFIL BERBEDA -->
+            <div class="rounded-3xl bg-slate-900/70 backdrop-blur-md border border-slate-800/80 hover:border-sky-500/50 p-4.5 sm:p-5 transition-all">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 shrink-0">
+                  <i class="fa-brands fa-linkedin-in text-xl"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[11px] font-mono uppercase tracking-wider text-sky-400">LinkedIn</p>
+                  <a
+                    href="https://www.linkedin.com/in/farhan-munfaridz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-display font-bold text-sm sm:text-base text-white hover:text-sky-300 transition-colors block truncate mt-0.5"
+                  >
+                    Farhan Munfaridz
+                  </a>
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-t border-slate-800/80 flex items-center gap-2">
+                <a
+                  href="https://www.linkedin.com/in/farhan-munfaridz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/40 text-sky-300 text-xs font-semibold transition-all"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="linkedin_open_btn">Kunjungi LinkedIn</span>
+                </a>
+                <button
+                  type="button"
+                  onclick="copyContactValue('https://www.linkedin.com/in/farhan-munfaridz', 'linkedin')"
+                  class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                >
+                  <i class="fa-regular fa-copy"></i>
+                  <span data-i18n="copy_btn">Salin</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. WhatsApp Card -->
+            <div class="rounded-3xl bg-slate-900/70 backdrop-blur-md border border-slate-800/80 hover:border-emerald-500/50 p-4.5 sm:p-5 transition-all">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                  <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[11px] font-mono uppercase tracking-wider text-emerald-400">WhatsApp</p>
+                  <a
+                    href="https://wa.me/6287876510930"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-display font-bold text-sm sm:text-base text-white hover:text-emerald-300 transition-colors block mt-0.5"
+                  >
+                    +62 878-7651-0930
+                  </a>
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-t border-slate-800/80 flex items-center gap-2">
+                <a
+                  href="https://wa.me/6287876510930"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 text-xs font-semibold transition-all"
+                >
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span data-i18n="wa_direct_btn">Buka Chat</span>
+                </a>
+                <button
+                  type="button"
+                  onclick="copyContactValue('+62 878-7651-0930', 'wa')"
+                  class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                >
+                  <i class="fa-regular fa-copy"></i>
+                  <span data-i18n="copy_btn">Salin</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Email Card -->
+            <div class="rounded-3xl bg-slate-900/70 backdrop-blur-md border border-slate-800/80 hover:border-blue-500/50 p-4.5 sm:p-5 transition-all">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                  <i class="fa-solid fa-envelope text-xl"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[11px] font-mono uppercase tracking-wider text-blue-400">Gmail / Email</p>
+                  <a
+                    href="mailto:farhanmunfaridz@gmail.com"
+                    class="font-display font-bold text-sm sm:text-base text-white hover:text-blue-300 transition-colors block truncate mt-0.5"
+                  >
+                    farhanmunfaridz@gmail.com
+                  </a>
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-t border-slate-800/80 flex items-center gap-2">
+                <a
+                  href="mailto:farhanmunfaridz@gmail.com"
+                  class="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/40 text-blue-300 text-xs font-semibold transition-all"
+                >
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span data-i18n="email_open_btn">Kirim Email</span>
+                </a>
+                <button
+                  type="button"
+                  onclick="copyContactValue('farhanmunfaridz@gmail.com', 'email')"
+                  class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                >
+                  <i class="fa-regular fa-copy"></i>
+                  <span data-i18n="copy_btn">Salin</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. GitHub Card -->
+            <div class="rounded-3xl bg-slate-900/70 backdrop-blur-md border border-slate-800/80 hover:border-cyan-500/50 p-4.5 sm:p-5 transition-all">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                  <i class="fa-brands fa-github text-2xl"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[11px] font-mono uppercase tracking-wider text-cyan-400">GitHub</p>
+                  <a
+                    href="https://github.com/Varxyy51"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-display font-bold text-sm sm:text-base text-white hover:text-cyan-300 transition-colors block truncate mt-0.5"
+                  >
+                    github.com/Varxyy51
+                  </a>
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-t border-slate-800/80 flex items-center gap-2">
+                <a
+                  href="https://github.com/Varxyy51"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 text-cyan-300 text-xs font-semibold transition-all"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <span data-i18n="gh_open_btn">Buka Profil</span>
+                </a>
+                <button
+                  type="button"
+                  onclick="copyContactValue('https://github.com/Varxyy51', 'gh')"
+                  class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                >
+                  <i class="fa-regular fa-copy"></i>
+                  <span data-i18n="copy_btn">Salin</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Side: Functional Contact Form with WhatsApp & Gmail Actions (7 Cols) -->
+          <div class="lg:col-span-7 rounded-3xl bg-slate-900/70 backdrop-blur-md border border-slate-800/80 p-6 sm:p-8 shadow-xl">
+            <form id="contact-dual-form" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <!-- Name Input -->
+                <div>
+                  <label for="sender-name" data-i18n="form_name_label" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                    Nama Lengkap
+                  </label>
+                  <input
+                    id="sender-name"
+                    type="text"
+                    required
+                    placeholder="Contoh: Budi Santoso"
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950/90 border border-slate-800 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 text-sm text-white placeholder-slate-500 outline-none transition-all"
+                  />
+                </div>
+
+                <!-- Sender Email Input -->
+                <div>
+                  <label for="sender-email" data-i18n="form_email_label" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                    Email Anda
+                  </label>
+                  <input
+                    id="sender-email"
+                    type="email"
+                    required
+                    placeholder="nama@email.com"
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950/90 border border-slate-800 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 text-sm text-white placeholder-slate-500 outline-none transition-all"
+                  />
+                </div>
+              </div>
+
+              <!-- Message Input -->
+              <div>
+                <label for="sender-message" data-i18n="form_msg_label" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                  Pesan Anda
+                </label>
+                <textarea
+                  id="sender-message"
+                  rows="5"
+                  required
+                  placeholder="Tuliskan detail pesan, tawaran magang, atau kebutuhan proyek Anda di sini..."
+                  class="w-full px-4 py-3 rounded-xl bg-slate-950/90 border border-slate-800 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 text-sm text-white placeholder-slate-500 outline-none transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <!-- Two Action Buttons: WhatsApp & Gmail -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                <button
+                  type="button"
+                  id="send-via-wa-btn"
+                  class="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-cyan-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/20 hover:brightness-110 hover:-translate-y-0.5 transition-all"
+                >
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                  <span data-i18n="form_submit_wa">Kirim via WhatsApp</span>
+                </button>
+
+                <button
+                  type="button"
+                  id="send-via-gmail-btn"
+                  class="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-blue-500/20 hover:brightness-110 hover:-translate-y-0.5 transition-all"
+                >
+                  <i class="fa-solid fa-envelope text-base"></i>
+                  <span data-i18n="form_submit_gmail">Kirim via Gmail</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       7. FOOTER
+  ========================================================== -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/90 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 text-center md:text-left">
+        <span class="font-display font-extrabold text-lg text-white">
+          Farhan<span class="text-cyan-400">.M</span>
+        </span>
+        <span class="text-slate-600 hidden sm:inline">|</span>
+        <p data-i18n="footer_copy" class="text-xs sm:text-sm text-slate-400">
+          © 2026 Farhan Munfaridz (Semester 7 Sistem Informasi - Universitas Pamulang)
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-5 text-xs sm:text-sm font-medium text-slate-400">
+        <!-- GANTI LINK URL LINKEDIN JIKA SLUG PROFIL BERBEDA -->
+        <a
+          href="https://www.linkedin.com/in/farhan-munfaridz"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 hover:text-sky-400 transition-colors"
+        >
+          <i class="fa-brands fa-linkedin text-sky-400"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a
+          href="https://github.com/Varxyy51"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 hover:text-cyan-400 transition-colors"
+        >
+          <i class="fa-brands fa-github text-cyan-400"></i>
+          <span>GitHub</span>
+        </a>
+        <a
+          href="https://wa.me/6287876510930"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 hover:text-emerald-400 transition-colors"
+        >
+          <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a
+          href="mailto:farhanmunfaridz@gmail.com"
+          class="inline-flex items-center gap-1.5 hover:text-blue-400 transition-colors"
+        >
+          <i class="fa-solid fa-envelope text-blue-400"></i>
+          <span>Gmail</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       MODAL 1: SDLC CASE STUDY DETAIL MODAL
+  ========================================================== -->
+  <div id="sdlc-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-slate-900 border border-slate-700/90 p-6 sm:p-8 shadow-2xl">
+      <!-- Close Button -->
+      <button
+        id="close-sdlc-modal"
+        type="button"
+        aria-label="Close Modal"
+        class="absolute top-5 right-5 w-10 h-10 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Content Container -->
+      <div id="sdlc-modal-content" class="space-y-6">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 2: INTERACTIVE PRINTABLE ATS CV GENERATOR MODAL
+  ========================================================== -->
+  <div id="cv-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md">
+    <div id="cv-modal-card" class="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl bg-slate-900 border border-slate-700/90 p-5 sm:p-8 shadow-2xl">
+      <!-- Top Controls (Hidden on Print) -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-800">
+        <div>
+          <span data-i18n="cv_modal_badge" class="font-mono text-xs uppercase tracking-wider text-cyan-400 block">
+            Generator CV ATS-Friendly (Siap Cetak / PDF)
+          </span>
+          <span data-i18n="cv_modal_hint" class="text-[11px] text-slate-400">
+            Pilih "Save as PDF" pada jendela cetak browser untuk mengunduh file PDF A4.
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <!--
+            OPSIONAL - JIKA SUDAH MEMILIKI FILE CV PDF TERPISAH DI FOLDER YANG SAMA:
+            Hapus komentar di bawah ini untuk menampilkan tombol unduh langsung file CV_Farhan_Munfaridz.pdf:
+            <a href="CV_Farhan_Munfaridz.pdf" download="CV_Farhan_Munfaridz.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-semibold text-xs transition-all">
+              <i class="fa-solid fa-download"></i>
+              <span>Download File PDF</span>
+            </a>
+          -->
+          <button
+            id="print-cv-btn"
+            type="button"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 font-bold text-xs shadow-lg shadow-cyan-500/20 hover:brightness-110 transition-all"
+          >
+            <i class="fa-solid fa-file-pdf"></i>
+            <span data-i18n="cv_print_btn">Simpan sebagai PDF / Print CV</span>
+          </button>
+          <button
+            id="close-cv-modal"
+            type="button"
+            aria-label="Close CV Modal"
+            class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Clean White A4 ATS CV Document Sheet -->
+      <div id="cv-printable-area" class="rounded-2xl bg-white text-slate-900 p-6 sm:p-9 shadow-xl space-y-4 font-sans">
+        <!-- ATS Header -->
+        <div class="cv-header border-b-2 border-slate-900 pb-3.5 flex flex-col sm:flex-row sm:items-end justify-between gap-2.5">
+          <div>
+            <h3 class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight text-slate-950 uppercase">
+              Farhan Munfaridz
+            </h3>
+            <p class="text-sm font-semibold text-slate-700 mt-0.5">
+              Information Systems Student | Web &amp; Data Enthusiast
+            </p>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Pamulang, Tangerang Selatan, Banten, Indonesia
+            </p>
+          </div>
+          <div class="text-xs text-slate-700 space-y-0.5 sm:text-right font-medium">
+            <p>LinkedIn: linkedin.com/in/farhan-munfaridz (Farhan Munfaridz)</p>
+            <p>GitHub: github.com/Varxyy51</p>
+            <p>Email: farhanmunfaridz@gmail.com</p>
+            <p>WhatsApp: +62 878-7651-0930</p>
+          </div>
+        </div>
+
+        <!-- Professional Summary -->
+        <div class="cv-section">
+          <h4 data-i18n="cv_summary_title" class="text-xs font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-1.5">
+            Ringkasan Profil
+          </h4>
+          <p data-i18n="cv_summary_body" class="text-xs sm:text-[13px] text-slate-700 leading-relaxed">
+            Mahasiswa Semester 7 Program Studi Sistem Informasi di Universitas Pamulang dengan fokus pada pengembangan aplikasi web (PHP Laravel, JavaScript), analisis data operasional (Python Streamlit, SQL), sistem informasi bisnis (Odoo ERP), serta penerapan SDLC dan tata kelola TI untuk memecahkan permasalahan bisnis secara terukur.
+          </p>
+        </div>
+
+        <!-- Education -->
+        <div class="cv-section">
+          <h4 data-i18n="cv_edu_title" class="text-xs font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-1.5">
+            Pendidikan
+          </h4>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <div>
+              <p class="font-bold text-xs sm:text-sm text-slate-950">Universitas Pamulang — S1 Sistem Informasi</p>
+              <p data-i18n="cv_edu_sub" class="text-xs text-slate-700">Pamulang, Tangerang Selatan • Fokus: Analisis Sistem (SDLC), Pengembangan Web, Basis Data &amp; Sistem Informasi Bisnis</p>
+            </div>
+            <span data-i18n="cv_edu_term" class="text-xs font-bold text-slate-800 shrink-0">Semester 7 (Aktif)</span>
+          </div>
+        </div>
+
+        <!-- Core Competencies -->
+        <div class="cv-section">
+          <h4 data-i18n="cv_skills_title" class="text-xs font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-1.5">
+            Kompetensi Utama
+          </h4>
+          <div class="space-y-1 text-xs text-slate-800">
+            <p><strong class="text-slate-950">Web &amp; Mobile Development:</strong> PHP (Laravel), HTML5, CSS3, JavaScript, Flutter, WordPress</p>
+            <p><strong class="text-slate-950">Data &amp; Backend Systems:</strong> Python (Streamlit), SQLite, MySQL, Odoo 19 ERP</p>
+            <p><strong class="text-slate-950">Systems, Network &amp; Security:</strong> SDLC &amp; System Analysis, Cisco Packet Tracer, Splunk (Log Monitoring), AuditBoard, Technical SEO</p>
+          </div>
+        </div>
+
+        <!-- Featured Projects -->
+        <div class="cv-section">
+          <h4 data-i18n="cv_proj_title" class="text-xs font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 mb-1.5">
+            Proyek Unggulan
+          </h4>
+          <ul class="space-y-1.5 text-xs text-slate-700 list-disc pl-4">
+            <li>
+              <strong class="text-slate-950">Student Administration System (PHP, Laravel, SQLite, Laragon):</strong>
+              <span data-i18n="cv_p1_desc">Aplikasi manajemen persuratan dan administrasi mahasiswa berbasis role-based dashboard (Admin &amp; Mahasiswa) dengan fitur pengajuan surat, unggah dokumen, dan pelacakan status real-time.</span>
+            </li>
+            <li>
+              <strong class="text-slate-950">Driver Finance &amp; Order Tracker (Python, Streamlit, SQLite):</strong>
+              <span data-i18n="cv_p2_desc">Dashboard analitik keuangan harian untuk pengemudi layanan pesan-antar dengan visualisasi pendapatan bersih, pencatatan biaya operasional, dan evaluasi performa.</span>
+            </li>
+            <li>
+              <strong class="text-slate-950">TopUpKuy Local Digital Storefront (Blogger XML, Custom Domain DNS, Local SEO):</strong>
+              <span data-i18n="cv_p3_desc">Platform top-up game lokal (topupkuy.biz.id) dengan optimasi Technical &amp; Local SEO untuk menjangkau pasar Tangerang Selatan.</span>
+            </li>
+            <li>
+              <strong class="text-slate-950">Nusantara Dungeon — Cyber Keris Edition (HTML5 Canvas, JavaScript):</strong>
+              <span data-i18n="cv_p4_desc">Game aksi browser 2D bertema cyberpunk lokal Indonesia dengan mekanik pertarungan melee, sistem upgrade, dan generasi dungeon prosedural.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       FLOATING TOAST NOTIFICATION
+  ========================================================== -->
+  <div
+    id="toast-notification"
+    class="fixed bottom-5 right-5 z-50 translate-y-20 opacity-0 pointer-events-none transition-all duration-300 max-w-sm px-4 py-3.5 rounded-2xl bg-slate-900/95 border border-cyan-500/50 text-slate-100 shadow-2xl backdrop-blur-xl flex items-center gap-3"
+  >
+    <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <p id="toast-message" class="text-xs sm:text-sm font-medium text-slate-200"></p>
+  </div>
+
+  <!-- =========================================================
+       VANILLA JAVASCRIPT: BILINGUAL ENGINE, FILTERS & MODALS
+  ========================================================== -->
+  <script>
+    // 1. Bilingual Dictionary (ID & EN)
+    const translations = {
+      id: {
+        nav_home: 'Beranda',
+        nav_about: 'Tentang',
+        nav_skills: 'Keahlian',
+        nav_projects: 'Proyek',
+        nav_contact: 'Kontak',
+        hero_status: 'Tersedia untuk Magang & Kolaborasi Proyek',
+        hero_greeting: 'Halo, saya',
+        hero_affiliation: 'Mahasiswa Semester 7 Sistem Informasi, Universitas Pamulang (Pamulang, Tangerang Selatan)',
+        hero_bio: 'Mahasiswa Semester 7 Sistem Informasi di Universitas Pamulang (Pamulang, Tangerang Selatan) yang fokus pada pengembangan aplikasi web, analisis data, sistem informasi bisnis, dan implementasi SDLC untuk memecahkan masalah nyata di lapangan.',
+        btn_view_projects: 'Lihat Proyek',
+        btn_download_cv: 'Lihat & Unduh CV',
+        photo_formal: 'Formal',
+        photo_casual: 'Kasual',
+        about_kicker: '01. Tentang Saya',
+        about_title: 'Menjembatani Proses Bisnis & Solusi Teknologi',
+        about_photo_badge: 'Semester 7 • Sistem Informasi UNPAM',
+        about_p1: 'Saya adalah mahasiswa <strong class="text-white font-semibold">Semester 7 Program Studi Sistem Informasi di Universitas Pamulang</strong> (Pamulang, Tangerang Selatan). Ketertarikan utama saya berada di persimpangan antara pengembangan teknis (Laravel, Python, SQL) dengan analisis sistem, ERP, dan tata kelola TI (Audit &amp; Monitoring).',
+        about_p2: 'Dengan pola pikir <strong class="text-cyan-300 font-medium">System Analyst &amp; Developer</strong>, saya menjembatani kebutuhan alur kerja bisnis melalui pemodelan <strong class="text-cyan-300 font-medium">SDLC (System Development Life Cycle)</strong>, perancangan basis data relasional, hingga rekayasa perangkat lunak modern yang terukur dampaknya.',
+        meta_affil_label: 'Afiliasi',
+        meta_affil_val: 'Universitas Pamulang - Semester 7',
+        meta_loc_label: 'Lokasi',
+        skills_kicker: '02. Tech Stack & Keahlian',
+        skills_title: 'Perangkat & Kompetensi Teknis',
+        skills_subtitle: 'Kombinasi teknologi pengembangan aplikasi, pengolahan data bisnis, serta analisis sistem & keamanan jaringan.',
+        skill_cat1_desc: 'Pengembangan antarmuka responsif dan sistem web full-stack maupun aplikasi lintas platform.',
+        skill_cat2_desc: 'Pengelolaan basis data relasional, visualisasi analitik data operasional, dan integrasi ERP bisnis.',
+        skill_cat3_desc: 'Perancangan arsitektur sistem, pemantauan log keamanan, tata kelola audit TI, dan optimasi teknis web.',
+        projects_kicker: '03. Proyek Unggulan',
+        projects_title: 'Studi Kasus & Karya Terpilih',
+        contact_kicker: '04. Hubungi Saya',
+        contact_title: 'Mari Berkolaborasi & Diskusi',
+        contact_subtitle: 'Terbuka untuk kesempatan magang, kolaborasi pengembangan sistem informasi, proyek aplikasi web, maupun diskusi seputar analisis data.',
+        linkedin_open_btn: 'Kunjungi LinkedIn',
+        email_open_btn: 'Kirim Email',
+        wa_direct_btn: 'Buka Chat',
+        gh_open_btn: 'Buka Profil',
+        copy_btn: 'Salin',
+        form_name_label: 'Nama Lengkap',
+        form_email_label: 'Email / Subjek Anda',
+        form_msg_label: 'Pesan Anda',
+        form_submit_wa: 'Kirim via WhatsApp',
+        form_submit_gmail: 'Kirim via Gmail',
+        footer_copy: '© 2026 Farhan Munfaridz (Semester 7 Sistem Informasi - Universitas Pamulang)',
+        cv_modal_badge: 'Generator CV ATS-Friendly (Siap Cetak / PDF)',
+        cv_modal_hint: 'Pilih "Save as PDF" pada jendela cetak browser untuk mengunduh file PDF A4.',
+        cv_print_btn: 'Simpan sebagai PDF / Print CV',
+        cv_summary_title: 'Ringkasan Profil',
+        cv_summary_body: 'Mahasiswa Semester 7 Program Studi Sistem Informasi di Universitas Pamulang dengan fokus pada pengembangan aplikasi web (PHP Laravel, JavaScript), analisis data operasional (Python Streamlit, SQL), sistem informasi bisnis (Odoo ERP), serta penerapan SDLC dan tata kelola TI untuk memecahkan permasalahan bisnis secara terukur.',
+        cv_edu_title: 'Pendidikan',
+        cv_edu_sub: 'Pamulang, Tangerang Selatan • Fokus: Analisis Sistem (SDLC), Pengembangan Web, Basis Data & Sistem Informasi Bisnis',
+        cv_edu_term: 'Semester 7 (Aktif)',
+        cv_skills_title: 'Kompetensi Utama',
+        cv_proj_title: 'Proyek Unggulan',
+        cv_p1_desc: 'Aplikasi manajemen persuratan dan administrasi mahasiswa berbasis role-based dashboard (Admin & Mahasiswa) dengan fitur pengajuan surat, unggah dokumen, dan pelacakan status real-time.',
+        cv_p2_desc: 'Dashboard analitik keuangan harian untuk pengemudi layanan pesan-antar dengan visualisasi pendapatan bersih, pencatatan biaya operasional, dan evaluasi performa.',
+        cv_p3_desc: 'Platform top-up game lokal (topupkuy.biz.id) dengan optimasi Technical & Local SEO untuk menjangkau pasar Tangerang Selatan.',
+        cv_p4_desc: 'Game aksi browser 2D bertema cyberpunk lokal Indonesia dengan mekanik pertarungan melee, sistem upgrade, dan generasi dungeon prosedural.',
+        btn_sdlc_detail: 'Studi Kasus SDLC',
+        btn_visit_repo: 'Lihat Repo',
+        btn_visit_live: 'Kunjungi Web',
+        toast_copied_linkedin: 'Tautan LinkedIn Farhan Munfaridz berhasil disalin!',
+        toast_copied_email: 'Alamat email farhanmunfaridz@gmail.com berhasil disalin!',
+        toast_copied_wa: 'Nomor WhatsApp +62 878-7651-0930 berhasil disalin!',
+        toast_copied_gh: 'Tautan GitHub github.com/Varxyy51 berhasil disalin!',
+        toast_form_invalid: 'Mohon lengkapi Nama, Email/Subjek, dan Pesan Anda terlebih dahulu.',
+        toast_wa_redirect: 'Membuka WhatsApp dengan pesan terformat...',
+        toast_gmail_redirect: 'Membuka aplikasi Email menuju farhanmunfaridz@gmail.com...'
+      },
+      en: {
+        nav_home: 'Home',
+        nav_about: 'About',
+        nav_skills: 'Skills',
+        nav_projects: 'Projects',
+        nav_contact: 'Contact',
+        hero_status: 'Open to Internships & Project Collaborations',
+        hero_greeting: 'Hi, I am',
+        hero_affiliation: '7th Semester Information Systems Student, Pamulang University (Pamulang, South Tangerang)',
+        hero_bio: '7th-semester Information Systems student at Pamulang University (Pamulang, South Tangerang) focused on web application development, data analytics, business information systems, and SDLC implementation to solve real-world operational problems.',
+        btn_view_projects: 'View Projects',
+        btn_download_cv: 'View & Save CV',
+        photo_formal: 'Formal',
+        photo_casual: 'Casual',
+        about_kicker: '01. About Me',
+        about_title: 'Bridging Business Processes & Technology Solutions',
+        about_photo_badge: '7th Semester • Information Systems UNPAM',
+        about_p1: 'I am a <strong class="text-white font-semibold">7th-semester Information Systems student at Universitas Pamulang</strong> (Pamulang, South Tangerang). My core passion lies at the intersection of technical development (Laravel, Python, SQL) and systems analysis, ERP, and IT governance (Audit &amp; Monitoring).',
+        about_p2: 'With a <strong class="text-cyan-300 font-medium">System Analyst &amp; Developer</strong> mindset, I bridge business workflow needs through structured <strong class="text-cyan-300 font-medium">SDLC (System Development Life Cycle)</strong> modeling, relational database architecture, and modern software engineering.',
+        meta_affil_label: 'Affiliation',
+        meta_affil_val: 'Universitas Pamulang - 7th Semester',
+        meta_loc_label: 'Location',
+        skills_kicker: '02. Tech Stack & Skills',
+        skills_title: 'Technical Tools & Competencies',
+        skills_subtitle: 'A blend of full-stack application development, business data analytics, and system/network security.',
+        skill_cat1_desc: 'Building responsive user interfaces, full-stack web systems, and cross-platform mobile apps.',
+        skill_cat2_desc: 'Relational database management, operational financial data visualization, and ERP integration.',
+        skill_cat3_desc: 'System architecture modeling, security log monitoring, IT audit governance, and technical web optimization.',
+        projects_kicker: '03. Featured Projects',
+        projects_title: 'Case Studies & Selected Works',
+        contact_kicker: '04. Contact Me',
+        contact_title: 'Let’s Collaborate & Discuss',
+        contact_subtitle: 'Open for internship opportunities, information systems collaboration, web application development, or data analytics discussions.',
+        linkedin_open_btn: 'Visit LinkedIn',
+        email_open_btn: 'Send Email',
+        wa_direct_btn: 'Open Chat',
+        gh_open_btn: 'Open Profile',
+        copy_btn: 'Copy',
+        form_name_label: 'Full Name',
+        form_email_label: 'Your Email / Subject',
+        form_msg_label: 'Your Message',
+        form_submit_wa: 'Send via WhatsApp',
+        form_submit_gmail: 'Send via Gmail',
+        footer_copy: '© 2026 Farhan Munfaridz (7th Semester Information Systems - Pamulang University)',
+        cv_modal_badge: 'ATS-Friendly CV Generator (Print / Save PDF)',
+        cv_modal_hint: 'Choose "Save as PDF" in your browser print dialog to download a clean A4 PDF.',
+        cv_print_btn: 'Save as PDF / Print CV',
+        cv_summary_title: 'Professional Summary',
+        cv_summary_body: '7th-semester Information Systems student at Pamulang University specializing in web application development (PHP Laravel, JavaScript), operational data analytics (Python Streamlit, SQL), business information systems (Odoo ERP), and SDLC/IT governance to solve real-world business problems.',
+        cv_edu_title: 'Education',
+        cv_edu_sub: 'Pamulang, South Tangerang • Focus: System Analysis (SDLC), Web Development, Databases & Business Information Systems',
+        cv_edu_term: '7th Semester (Active)',
+        cv_skills_title: 'Core Competencies',
+        cv_proj_title: 'Featured Projects',
+        cv_p1_desc: 'Role-based student correspondence and administration web system (Admin & Student) featuring letter requests, document uploads, and real-time status tracking.',
+        cv_p2_desc: 'Daily financial analytics dashboard for delivery drivers with net income visualization, operational expense logging, and performance evaluation.',
+        cv_p3_desc: 'Local digital game top-up storefront (topupkuy.biz.id) optimized with Technical & Local SEO targeting South Tangerang.',
+        cv_p4_desc: 'Indonesian cyberpunk-themed 2D browser action game featuring melee combat mechanics, upgrade systems, and procedural dungeon generation.',
+        btn_sdlc_detail: 'SDLC Case Study',
+        btn_visit_repo: 'View Repo',
+        btn_visit_live: 'Visit Live Site',
+        toast_copied_linkedin: 'Farhan Munfaridz LinkedIn link copied!',
+        toast_copied_email: 'Email address farhanmunfaridz@gmail.com copied!',
+        toast_copied_wa: 'WhatsApp number +62 878-7651-0930 copied!',
+        toast_copied_gh: 'GitHub link github.com/Varxyy51 copied!',
+        toast_form_invalid: 'Please fill in your Name, Email/Subject, and Message first.',
+        toast_wa_redirect: 'Opening WhatsApp with your formatted message...',
+        toast_gmail_redirect: 'Opening Email client addressed to farhanmunfaridz@gmail.com...'
+      }
+    };
+
+    // 2. Projects Data with Visual Banner Previews, Bilingual Descriptions & SDLC Case Studies
+    const projectsData = [
+      {
+        id: 'student-admin',
+        category: 'Web & App',
+        icon: 'fa-solid fa-building-columns',
+        accent: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30 text-blue-400',
+        screenshot: 'preview-student-admin.png',
+        previewSvg: `
+          <svg class="w-full h-full" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="180" fill="#071226"/>
+            <rect x="16" y="16" width="84" height="148" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="28" y="30" width="60" height="8" rx="4" fill="#38bdf8"/>
+            <rect x="28" y="48" width="48" height="6" rx="3" fill="#334155"/>
+            <rect x="28" y="62" width="54" height="6" rx="3" fill="#334155"/>
+            <rect x="28" y="76" width="42" height="6" rx="3" fill="#334155"/>
+            <rect x="112" y="16" width="86" height="44" rx="10" fill="#0f172a" stroke="#1d4ed8" stroke-opacity="0.5"/>
+            <rect x="124" y="28" width="32" height="6" rx="3" fill="#60a5fa"/>
+            <rect x="124" y="40" width="52" height="10" rx="4" fill="#e2e8f0"/>
+            <rect x="206" y="16" width="86" height="44" rx="10" fill="#0f172a" stroke="#0891b2" stroke-opacity="0.5"/>
+            <rect x="218" y="28" width="36" height="6" rx="3" fill="#22d3ee"/>
+            <rect x="218" y="40" width="46" height="10" rx="4" fill="#e2e8f0"/>
+            <rect x="300" y="16" width="84" height="44" rx="10" fill="#0f172a" stroke="#10b981" stroke-opacity="0.5"/>
+            <rect x="312" y="28" width="34" height="6" rx="3" fill="#34d399"/>
+            <rect x="312" y="40" width="44" height="10" rx="4" fill="#e2e8f0"/>
+            <rect x="112" y="70" width="272" height="94" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="126" y="84" width="110" height="7" rx="3.5" fill="#94a3b8"/>
+            <rect x="316" y="82" width="54" height="12" rx="6" fill="#10b981" fill-opacity="0.25"/>
+            <rect x="126" y="104" width="140" height="6" rx="3" fill="#475569"/>
+            <rect x="316" y="102" width="54" height="12" rx="6" fill="#38bdf8" fill-opacity="0.25"/>
+            <rect x="126" y="124" width="124" height="6" rx="3" fill="#475569"/>
+            <rect x="316" y="122" width="54" height="12" rx="6" fill="#10b981" fill-opacity="0.25"/>
+            <rect x="126" y="144" width="134" height="6" rx="3" fill="#475569"/>
+          </svg>
+        `,
+        title: {
+          id: 'Student Administration System (Sistem Administrasi Kemahasiswaan)',
+          en: 'Student Administration System'
+        },
+        description: {
+          id: 'Aplikasi web manajemen persuratan dan administrasi mahasiswa dengan fitur role-based dashboard (Admin & Mahasiswa), pengajuan surat, lampiran dokumen, dan pelacakan status secara real-time.',
+          en: 'A web-based student correspondence and administration management platform featuring role-based dashboards (Admin & Student), document attachment uploads, and real-time request status tracking.'
+        },
+        tech: ['PHP', 'Laravel', 'SQLite', 'Laragon'],
+        linkUrl: 'https://github.com/Varxyy51',
+        linkType: 'repo',
+        sdlc: {
+          id: {
+            analysis: 'Mengidentifikasi hambatan proses pengajuan surat kemahasiswaan manual yang sulit dipantau status penyelesaiannya oleh mahasiswa maupun staf administrasi.',
+            design: 'Merancang skema database relasional (Users, LetterRequests, Attachments, StatusLogs) serta memisahkan hak akses (RBAC) antara Admin dan Mahasiswa.',
+            implementation: 'Dikembangkan menggunakan framework Laravel dan SQLite dengan validasi unggah berkas serta notifikasi perubahan status secara real-time.',
+            impact: 'Memangkas waktu tunggu konfirmasi administrasi dan menyediakan jejak audit digital untuk setiap surat yang diterbitkan.'
+          },
+          en: {
+            analysis: 'Identified bottlenecks in manual student correspondence requests where tracking approval progress was difficult for both students and staff.',
+            design: 'Designed a relational database schema (Users, LetterRequests, Attachments, StatusLogs) and separated Role-Based Access Control (RBAC) for Admins and Students.',
+            implementation: 'Built with Laravel and SQLite featuring secure document upload validation and real-time status transition tracking.',
+            impact: 'Reduced administrative confirmation delays and established a clear digital audit trail for every issued document.'
+          }
+        }
+      },
+      {
+        id: 'driver-finance',
+        category: 'Data & ERP',
+        icon: 'fa-solid fa-chart-line',
+        accent: 'from-cyan-500/20 to-emerald-500/20 border-cyan-500/30 text-cyan-400',
+        screenshot: 'preview-driver-finance.png',
+        previewSvg: `
+          <svg class="w-full h-full" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="180" fill="#061622"/>
+            <rect x="18" y="16" width="114" height="44" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="30" y="26" width="46" height="5" rx="2.5" fill="#94a3b8"/>
+            <rect x="30" y="38" width="76" height="11" rx="4" fill="#34d399"/>
+            <rect x="143" y="16" width="114" height="44" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="155" y="26" width="52" height="5" rx="2.5" fill="#94a3b8"/>
+            <rect x="155" y="38" width="68" height="11" rx="4" fill="#38bdf8"/>
+            <rect x="268" y="16" width="114" height="44" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="280" y="26" width="44" height="5" rx="2.5" fill="#94a3b8"/>
+            <rect x="280" y="38" width="62" height="11" rx="4" fill="#60a5fa"/>
+            <rect x="18" y="70" width="364" height="94" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <path d="M36 144 L92 122 L148 130 L204 98 L260 106 L316 84 L364 90" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M36 152 L92 146 L148 148 L204 138 L260 142 L316 134 L364 136" stroke="#34d399" stroke-width="2" stroke-dasharray="4 4"/>
+            <circle cx="204" cy="98" r="4" fill="#22d3ee"/>
+            <circle cx="316" cy="84" r="4" fill="#34d399"/>
+          </svg>
+        `,
+        title: {
+          id: 'Driver Finance & Order Tracker',
+          en: 'Driver Finance & Order Tracker'
+        },
+        description: {
+          id: 'Aplikasi analitik keuangan dan pencatatan order harian untuk pengemudi layanan pesan-antar, dilengkapi visualisasi pendapatan bersih, pengeluaran operasional, dan evaluasi performa harian.',
+          en: 'A financial analytics and daily order tracking application for delivery drivers, equipped with net income visualization, operational expense logging, and daily performance evaluation.'
+        },
+        tech: ['Python', 'Streamlit', 'SQLite'],
+        linkUrl: 'https://github.com/Varxyy51/driver-finance-tracker',
+        linkType: 'repo',
+        sdlc: {
+          id: {
+            analysis: 'Pengemudi layanan pesan-antar sering kesulitan menghitung margin bersih harian karena tercampurnya pendapatan kotor dengan biaya bensin, parkir, dan perawatan.',
+            design: 'Merancang struktur pencatatan transaksi harian berbasis SQLite dengan kategori pemasukan order, insentif, dan pengeluaran operasional.',
+            implementation: 'Membangun antarmuka analitik interaktif menggunakan Python dan Streamlit untuk menampilkan grafik tren pendapatan bersih serta rasio efisiensi harian.',
+            impact: 'Membantu pengemudi mengevaluasi jam operasional paling menguntungkan dan menjaga arus kas harian tetap terkontrol.'
+          },
+          en: {
+            analysis: 'Delivery drivers often struggle to calculate true daily net margins because gross earnings mix with fuel, parking, and maintenance expenses.',
+            design: 'Architected an SQLite transaction logging schema separating order fares, bonuses, and operational cost categories.',
+            implementation: 'Developed an interactive analytics dashboard using Python and Streamlit to visualize net profit trends and daily efficiency ratios.',
+            impact: 'Enabled data-driven evaluation of peak earning hours and disciplined daily cash-flow tracking.'
+          }
+        }
+      },
+      {
+        id: 'topupkuy',
+        category: 'Web & App',
+        icon: 'fa-solid fa-store',
+        accent: 'from-blue-500/20 to-indigo-500/20 border-blue-500/30 text-cyan-300',
+        screenshot: 'preview-topupkuy.png',
+        previewSvg: `
+          <svg class="w-full h-full" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="180" fill="#091328"/>
+            <rect x="18" y="14" width="364" height="28" rx="8" fill="#0f172a" stroke="#1e293b"/>
+            <circle cx="34" cy="28" r="5" fill="#38bdf8"/>
+            <rect x="46" y="24" width="84" height="8" rx="4" fill="#e2e8f0"/>
+            <rect x="292" y="22" width="78" height="12" rx="6" fill="#0284c7" fill-opacity="0.35"/>
+            <rect x="18" y="52" width="364" height="44" rx="10" fill="url(#storeGrad)" fill-opacity="0.25" stroke="#38bdf8" stroke-opacity="0.35"/>
+            <rect x="34" y="64" width="146" height="9" rx="4.5" fill="#ffffff"/>
+            <rect x="34" y="79" width="210" height="6" rx="3" fill="#bae6fd"/>
+            <rect x="18" y="106" width="84" height="58" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="30" y="118" width="60" height="22" rx="6" fill="#1d4ed8" fill-opacity="0.4"/>
+            <rect x="30" y="147" width="44" height="6" rx="3" fill="#cbd5e1"/>
+            <rect x="111" y="106" width="84" height="58" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="123" y="118" width="60" height="22" rx="6" fill="#0891b2" fill-opacity="0.4"/>
+            <rect x="123" y="147" width="48" height="6" rx="3" fill="#cbd5e1"/>
+            <rect x="205" y="106" width="84" height="58" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="217" y="118" width="60" height="22" rx="6" fill="#0d9488" fill-opacity="0.4"/>
+            <rect x="217" y="147" width="42" height="6" rx="3" fill="#cbd5e1"/>
+            <rect x="298" y="106" width="84" height="58" rx="10" fill="#0f172a" stroke="#1e293b"/>
+            <rect x="310" y="118" width="60" height="22" rx="6" fill="#2563eb" fill-opacity="0.4"/>
+            <rect x="310" y="147" width="50" height="6" rx="3" fill="#cbd5e1"/>
+            <defs>
+              <linearGradient id="storeGrad" x1="18" y1="52" x2="382" y2="96" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#3b82f6"/>
+                <stop offset="1" stop-color="#22d3ee"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        `,
+        title: {
+          id: 'TopUpKuy Local Digital Storefront',
+          en: 'TopUpKuy Local Digital Storefront'
+        },
+        description: {
+          id: 'Pengembangan platform top-up game lokal (Mobile Legends, Valorant, Free Fire, dll.) dengan optimasi Technical & Local SEO untuk menjangkau pasar Tangerang Selatan.',
+          en: 'Development of a local digital game top-up storefront (Mobile Legends, Valorant, Free Fire, etc.) optimized with Technical & Local SEO to capture the South Tangerang market.'
+        },
+        tech: ['Blogger XML', 'Custom Domain DNS', 'Local SEO'],
+        linkUrl: 'https://www.topupkuy.biz.id',
+        linkType: 'live',
+        sdlc: {
+          id: {
+            analysis: 'Menganalisis perilaku pencarian gamer lokal di wilayah Tangerang Selatan yang membutuhkan layanan top-up cepat, terpercaya, dan mudah ditemukan di mesin pencari.',
+            design: 'Merancang arsitektur katalog produk yang ringan, struktur semantic HTML/XML, serta konfigurasi DNS custom domain (topupkuy.biz.id).',
+            implementation: 'Melakukan kustomisasi template Blogger XML, penerapan meta tags, schema markup produk, dan optimasi kecepatan muat halaman (Core Web Vitals).',
+            impact: 'Meningkatkan visibilitas organik pada kata kunci lokal dan memberikan pengalaman transaksi yang cepat di perangkat mobile.'
+          },
+          en: {
+            analysis: 'Analyzed local search intent among gamers in South Tangerang looking for fast, trustworthy top-up services discoverable via search engines.',
+            design: 'Designed a lightweight product catalog hierarchy, semantic XML structure, and custom domain DNS setup (topupkuy.biz.id).',
+            implementation: 'Customized Blogger XML templates, implemented structured metadata, and optimized mobile loading performance.',
+            impact: 'Improved organic visibility for local search queries and delivered a fast mobile checkout experience.'
+          }
+        }
+      },
+      {
+        id: 'nusantara-dungeon',
+        category: 'Game/Creative',
+        icon: 'fa-solid fa-gamepad',
+        accent: 'from-emerald-500/20 to-cyan-500/20 border-emerald-500/30 text-emerald-400',
+        screenshot: 'preview-nusantara-dungeon.png',
+        previewSvg: `
+          <svg class="w-full h-full" viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="180" fill="#041518"/>
+            <rect x="24" y="20" width="352" height="140" rx="12" fill="#091d22" stroke="#10b981" stroke-opacity="0.4"/>
+            <rect x="40" y="34" width="90" height="8" rx="4" fill="#10b981"/>
+            <rect x="40" y="46" width="64" height="5" rx="2.5" fill="#22d3ee"/>
+            <rect x="64" y="68" width="76" height="64" rx="8" fill="#0f2930" stroke="#22d3ee" stroke-opacity="0.45"/>
+            <rect x="140" y="94" width="44" height="14" fill="#0f2930"/>
+            <rect x="184" y="60" width="92" height="82" rx="8" fill="#0f2930" stroke="#10b981" stroke-opacity="0.6"/>
+            <rect x="276" y="94" width="32" height="14" fill="#0f2930"/>
+            <rect x="308" y="72" width="48" height="56" rx="8" fill="#0f2930" stroke="#38bdf8" stroke-opacity="0.45"/>
+            <circle cx="222" cy="101" r="8" fill="#22d3ee"/>
+            <path d="M232 95 L248 85 L242 103 Z" fill="#34d399"/>
+            <circle cx="96" cy="98" r="6" fill="#f43f5e"/>
+            <circle cx="332" cy="100" r="6" fill="#fbbf24"/>
+          </svg>
+        `,
+        title: {
+          id: 'Nusantara Dungeon (Cyber Keris Edition)',
+          en: 'Nusantara Dungeon (Cyber Keris Edition)'
+        },
+        description: {
+          id: 'Game browser 2D bertema cyberpunk lokal Indonesia dengan mekanik pertarungan melee, sistem upgrade, dan generasi dungeon prosedural.',
+          en: 'An Indonesian cyberpunk-themed 2D browser action game featuring melee combat mechanics, character upgrades, and procedural dungeon generation.'
+        },
+        tech: ['HTML5 Canvas', 'JavaScript', 'Game Logic'],
+        linkUrl: 'https://github.com/Varxyy51',
+        linkType: 'repo',
+        sdlc: {
+          id: {
+            analysis: 'Mengeksplorasi penerapan logika pemrograman berorientasi objek dan algoritma prosedural dalam game browser ringan tanpa engine eksternal berat.',
+            design: 'Merancang state machine permainan, sistem deteksi tabrakan (collision detection), serta algoritma pembentukan ruangan dungeon acak.',
+            implementation: 'Diimplementasikan murni menggunakan HTML5 Canvas API dan JavaScript vanilla dengan visual futuristik bernuansa Cyber Keris Nusantara.',
+            impact: 'Menghasilkan gameplay 60 FPS yang responsif dengan tingkat replayability tinggi berkat tata letak dungeon yang selalu berubah.'
+          },
+          en: {
+            analysis: 'Explored object-oriented state logic and procedural algorithms inside a lightweight browser game without heavy external engines.',
+            design: 'Engineered game state machines, bounding-box collision detection, and procedural room-generation algorithms.',
+            implementation: 'Built purely with HTML5 Canvas API and vanilla JavaScript featuring an Indonesian Cyber Keris visual aesthetic.',
+            impact: 'Delivered responsive 60 FPS gameplay with high replayability through dynamically generated dungeon layouts.'
+          }
+        }
+      }
+    ];
+
+    // Application State
+    let currentLang = 'id';
+    let currentFilter = 'all';
+
+    // DOM Elements
+    const langToggleBtn = document.getElementById('lang-toggle-btn');
+    const langPillId = document.getElementById('lang-pill-id');
+    const langPillEn = document.getElementById('lang-pill-en');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+    const projectsGrid = document.getElementById('projects-grid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const sdlcModal = document.getElementById('sdlc-modal');
+    const sdlcModalContent = document.getElementById('sdlc-modal-content');
+    const closeSdlcModalBtn = document.getElementById('close-sdlc-modal');
+    const cvModal = document.getElementById('cv-modal');
+    const openCvBtn = document.getElementById('open-cv-btn');
+    const closeCvModalBtn = document.getElementById('close-cv-modal');
+    const printCvBtn = document.getElementById('print-cv-btn');
+    const heroProfileImg = document.getElementById('hero-profile-img');
+    const profileAvatarFallback = document.getElementById('profile-avatar-fallback');
+    const heroFallbackFilename = document.getElementById('hero-fallback-filename');
+    const photoBtnFormal = document.getElementById('photo-btn-formal');
+    const photoBtnCasual = document.getElementById('photo-btn-casual');
+    const contactDualForm = document.getElementById('contact-dual-form');
+    const sendViaWaBtn = document.getElementById('send-via-wa-btn');
+    const sendViaGmailBtn = document.getElementById('send-via-gmail-btn');
+    const toastEl = document.getElementById('toast-notification');
+    const toastMsgEl = document.getElementById('toast-message');
+
+    // Helper: Show Non-Blocking Toast Notification
+    let toastTimeout;
+    function showToast(message) {
+      toastMsgEl.textContent = message;
+      toastEl.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastEl.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+
+    // 3. Render Project Cards Based on Filter & Language
+    function renderProjects() {
+      const filtered = currentFilter === 'all'
+        ? projectsData
+        : projectsData.filter(p => p.category === currentFilter);
+
+      projectsGrid.innerHTML = filtered.map(project => {
+        const title = project.title[currentLang];
+        const desc = project.description[currentLang];
+        const sdlcLabel = translations[currentLang].btn_sdlc_detail;
+        const linkLabel = project.linkType === 'live'
+          ? translations[currentLang].btn_visit_live
+          : translations[currentLang].btn_visit_repo;
+        const linkIcon = project.linkType === 'live'
+          ? 'fa-solid fa-arrow-up-right-from-square'
+          : 'fa-brands fa-github';
+
+        return `
+          <article class="rounded-3xl bg-slate-900/70 backdrop-blur-xl border border-slate-800 hover:border-cyan-500/50 overflow-hidden flex flex-col justify-between shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            <div>
+              <!-- Visual Header Preview Banner (Opsional: letakkan file ${project.screenshot} di folder yang sama untuk menampilkan screenshot asli) -->
+              <div class="relative h-44 w-full bg-slate-950 border-b border-slate-800/80 overflow-hidden">
+                <img
+                  src="${project.screenshot}"
+                  alt="${title}"
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+                />
+                <div class="hidden w-full h-full group-hover:scale-105 transition-transform duration-500">
+                  ${project.previewSvg}
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-70 pointer-events-none"></div>
+
+                <!-- Floating Category Badge & Icon -->
+                <div class="absolute top-3.5 left-4 right-4 flex items-center justify-between gap-2">
+                  <div class="w-9 h-9 rounded-xl bg-slate-950/90 backdrop-blur-md border border-slate-700/80 flex items-center justify-center text-cyan-400 shadow-lg">
+                    <i class="${project.icon} text-sm"></i>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-slate-950/90 backdrop-blur-md border border-slate-700/80 text-xs font-mono text-cyan-300 shadow-lg">
+                    ${project.category}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Project Title & Description -->
+              <div class="p-6 sm:p-7 pb-4">
+                <h3 class="font-display font-bold text-lg sm:text-xl text-white group-hover:text-cyan-300 transition-colors mb-2.5">
+                  ${title}
+                </h3>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  ${desc}
+                </p>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-7 pb-6 sm:pb-7 space-y-5">
+              <!-- Tech Stack Badges -->
+              <div class="flex flex-wrap gap-2">
+                ${project.tech.map(t => `
+                  <span class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800/90 text-[11px] font-mono text-slate-300">
+                    ${t}
+                  </span>
+                `).join('')}
+              </div>
+
+              <!-- Action Footer -->
+              <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onclick="openSdlcModal('${project.id}')"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/40 text-cyan-300 text-xs font-semibold transition-all"
+                >
+                  <i class="fa-solid fa-layer-group"></i>
+                  <span>${sdlcLabel}</span>
+                </button>
+
+                <a
+                  href="${project.linkUrl}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-200 hover:text-white text-xs font-semibold transition-all"
+                >
+                  <i class="${linkIcon}"></i>
+                  <span>${linkLabel}</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // 4. Open SDLC Case Study Modal
+    window.openSdlcModal = function(projectId) {
+      const project = projectsData.find(p => p.id === projectId);
+      if (!project) return;
+
+      const s = project.sdlc[currentLang];
+      const labels = currentLang === 'id'
+        ? {
+            kicker: 'Studi Kasus SDLC & Arsitektur Sistem',
+            step1: '1. Pernyataan Masalah (Problem Statement)',
+            step2: '2. Analisis & Arsitektur Sistem',
+            step3: '3. Implementasi Teknis',
+            step4: '4. Dampak & Hasil Sistem',
+            cta: project.linkType === 'live' ? 'Kunjungi Website Live' : 'Buka Repository GitHub'
+          }
+        : {
+            kicker: 'SDLC Case Study & System Architecture',
+            step1: '1. Problem Statement',
+            step2: '2. System Analysis & Architecture',
+            step3: '3. Technical Implementation',
+            step4: '4. Outcome & Impact',
+            cta: project.linkType === 'live' ? 'Visit Live Website' : 'Open GitHub Repository'
+          };
+
+      sdlcModalContent.innerHTML = `
+        <div class="pr-8">
+          <span class="font-mono text-xs uppercase tracking-wider text-cyan-400">${labels.kicker}</span>
+          <h3 class="font-display font-bold text-xl sm:text-2xl text-white mt-1">${project.title[currentLang]}</h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            ${project.tech.map(t => `<span class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-300">${t}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-sm">
+          <div class="p-4 rounded-2xl bg-slate-950/90 border border-slate-800">
+            <p class="font-display font-bold text-blue-400 mb-1.5">${labels.step1}</p>
+            <p class="text-slate-300 leading-relaxed">${s.analysis}</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-950/90 border border-slate-800">
+            <p class="font-display font-bold text-cyan-400 mb-1.5">${labels.step2}</p>
+            <p class="text-slate-300 leading-relaxed">${s.design}</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-950/90 border border-slate-800">
+            <p class="font-display font-bold text-teal-400 mb-1.5">${labels.step3}</p>
+            <p class="text-slate-300 leading-relaxed">${s.implementation}</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-950/90 border border-slate-800">
+            <p class="font-display font-bold text-emerald-400 mb-1.5">${labels.step4}</p>
+            <p class="text-slate-300 leading-relaxed">${s.impact}</p>
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end">
+          <a
+            href="${project.linkUrl}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 font-bold text-xs sm:text-sm hover:brightness-110 transition-all"
+          >
+            <span>${labels.cta}</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      `;
+
+      sdlcModal.classList.remove('hidden');
+      sdlcModal.classList.add('flex');
+    };
+
+    function closeSdlcModal() {
+      sdlcModal.classList.add('hidden');
+      sdlcModal.classList.remove('flex');
+    }
+
+    // 5. Switch Language Function (ID <-> EN)
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Update toggle pill visual state
+      if (lang === 'id') {
+        langPillId.className = 'px-2.5 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 font-bold transition-all';
+        langPillEn.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-slate-200 transition-all';
+      } else {
+        langPillEn.className = 'px-2.5 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 font-bold transition-all';
+        langPillId.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-slate-200 transition-all';
+      }
+
+      // Update all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Update form placeholders dynamically
+      const nameInput = document.getElementById('sender-name');
+      const emailInput = document.getElementById('sender-email');
+      const msgInput = document.getElementById('sender-message');
+      if (lang === 'id') {
+        nameInput.placeholder = 'Contoh: Budi Santoso';
+        emailInput.placeholder = 'nama@email.com';
+        msgInput.placeholder = 'Tuliskan detail pesan, tawaran magang, atau kebutuhan proyek Anda di sini...';
+      } else {
+        nameInput.placeholder = 'e.g., Alex Morgan';
+        emailInput.placeholder = 'name@email.com';
+        msgInput.placeholder = 'Write your message, internship opportunity, or project inquiry details here...';
+      }
+
+      // Re-render project cards in active language
+      renderProjects();
+    }
+
+    // Dual-Photo Switcher in Hero Section (Formal vs Casual)
+    function setHeroPhoto(mode) {
+      const targetSrc = mode === 'casual' ? 'foto-farhan2.jpeg' : 'foto-farhan1.jpeg';
+      heroFallbackFilename.textContent = targetSrc;
+      profileAvatarFallback.classList.add('hidden');
+      heroProfileImg.classList.remove('hidden');
+      heroProfileImg.src = targetSrc;
+
+      if (mode === 'formal') {
+        photoBtnFormal.className = 'px-4 py-1.5 rounded-xl text-xs font-mono font-bold bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 shadow transition-all';
+        photoBtnCasual.className = 'px-4 py-1.5 rounded-xl text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all';
+      } else {
+        photoBtnCasual.className = 'px-4 py-1.5 rounded-xl text-xs font-mono font-bold bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 shadow transition-all';
+        photoBtnFormal.className = 'px-4 py-1.5 rounded-xl text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all';
+      }
+    }
+
+    photoBtnFormal.addEventListener('click', () => setHeroPhoto('formal'));
+    photoBtnCasual.addEventListener('click', () => setHeroPhoto('casual'));
+
+    // Event Listeners
+    langToggleBtn.addEventListener('click', () => {
+      setLanguage(currentLang === 'id' ? 'en' : 'id');
+    });
+
+    // Mobile Menu Toggle
+    mobileMenuToggle.addEventListener('click', () => {
+      const isHidden = mobileMenuPanel.classList.contains('hidden');
+      mobileMenuPanel.classList.toggle('hidden');
+      mobileMenuIcon.className = isHidden ? 'fa-solid fa-xmark text-base' : 'fa-solid fa-bars text-base';
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuPanel.classList.add('hidden');
+        mobileMenuIcon.className = 'fa-solid fa-bars text-base';
+      });
+    });
+
+    // Category Filter Buttons
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentFilter = btn.getAttribute('data-filter');
+
+        filterButtons.forEach(b => {
+          b.className = 'filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900/90 border border-slate-800 text-slate-300 hover:border-cyan-400/50 hover:text-white';
+        });
+
+        btn.className = 'filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-950 shadow-md shadow-cyan-500/20';
+        renderProjects();
+      });
+    });
+
+    // Modal Controls
+    closeSdlcModalBtn.addEventListener('click', closeSdlcModal);
+    sdlcModal.addEventListener('click', (e) => {
+      if (e.target === sdlcModal) closeSdlcModal();
+    });
+
+    openCvBtn.addEventListener('click', () => {
+      cvModal.classList.remove('hidden');
+      cvModal.classList.add('flex');
+    });
+
+    closeCvModalBtn.addEventListener('click', () => {
+      cvModal.classList.add('hidden');
+      cvModal.classList.remove('flex');
+    });
+
+    cvModal.addEventListener('click', (e) => {
+      if (e.target === cvModal) {
+        cvModal.classList.add('hidden');
+        cvModal.classList.remove('flex');
+      }
+    });
+
+    printCvBtn.addEventListener('click', () => {
+      window.print();
+    });
+
+    // Global Copy Contact Value Helper (LinkedIn, Email, WhatsApp, GitHub)
+    window.copyContactValue = function(value, type) {
+      const tempInput = document.createElement('input');
+      tempInput.value = value;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        const toastKey = type === 'linkedin'
+          ? 'toast_copied_linkedin'
+          : type === 'email'
+            ? 'toast_copied_email'
+            : type === 'wa'
+              ? 'toast_copied_wa'
+              : 'toast_copied_gh';
+        showToast(translations[currentLang][toastKey]);
+      } catch (err) {
+        showToast(value);
+      }
+      document.body.removeChild(tempInput);
+    };
+
+    // Dual-Action Contact Form Handlers (WhatsApp & Gmail)
+    function validateContactForm() {
+      const name = document.getElementById('sender-name').value.trim();
+      const email = document.getElementById('sender-email').value.trim();
+      const message = document.getElementById('sender-message').value.trim();
+
+      if (!name || !email || !message) {
+        showToast(translations[currentLang].toast_form_invalid);
+        contactDualForm.reportValidity();
+        return null;
+      }
+      return { name, email, message };
+    }
+
+    sendViaWaBtn.addEventListener('click', () => {
+      const data = validateContactForm();
+      if (!data) return;
+
+      const formattedText = currentLang === 'id'
+        ? `Halo Farhan Munfaridz, saya *${data.name}* (${data.email}).\n\n*Pesan:*\n${data.message}`
+        : `Hi Farhan Munfaridz, I am *${data.name}* (${data.email}).\n\n*Message:*\n${data.message}`;
+
+      const waUrl = `https://wa.me/6287876510930?text=${encodeURIComponent(formattedText)}`;
+      showToast(translations[currentLang].toast_wa_redirect);
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    });
+
+    sendViaGmailBtn.addEventListener('click', () => {
+      const data = validateContactForm();
+      if (!data) return;
+
+      const subject = currentLang === 'id'
+        ? `Portofolio Inquiry dari ${data.name}`
+        : `Portfolio Inquiry from ${data.name}`;
+      const body = currentLang === 'id'
+        ? `Halo Farhan Munfaridz,\n\nNama: ${data.name}\nEmail Pengirim: ${data.email}\n\nPesan:\n${data.message}`
+        : `Hi Farhan Munfaridz,\n\nName: ${data.name}\nSender Email: ${data.email}\n\nMessage:\n${data.message}`;
+
+      const mailtoUrl = `mailto:farhanmunfaridz@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      showToast(translations[currentLang].toast_gmail_redirect);
+      window.location.href = mailtoUrl;
+    });
+
+    // Keyboard Escape Handler for Modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSdlcModal();
+        cvModal.classList.add('hidden');
+        cvModal.classList.remove('flex');
+      }
+    });
+
+    // Initialize Page
+    renderProjects();
+  </script>
+</body>
+</html>
